@@ -16,10 +16,13 @@
 | `ceo-review.md` | `/ceo` | 模式决策、范围定义（做什么/不做什么）、盲点与风险 |
 | `eng-plan.md` | `/plan-eng-review` | 架构蓝图、数据流、接口契约、测试矩阵 |
 | `design-plan.md` | `/plan-design-review` | UI 状态清单、交互规范、空状态/错误状态边界 |
+| `tasks.md` | `/tasks` | 原子任务清单、任务状态、验收条件、Bug 修复闭环记录 |
+| `sprint.md` | `/tasks` | 当前迭代看板：本轮在做、下轮积压、明确不做 |
 | `review-findings.md` | `/review` | 代码审查发现、竞态条件、逻辑盲点 |
 | `cso-findings.md` | `/cso` | 安全审计发现、威胁模型、修复优先级 |
 | `qa-findings.md` | `/qa` | 缺陷列表、复现步骤、回归测试覆盖情况 |
 | `investigation-report.md` | `/investigate` | 根因分析链路、已排除假设、已验证假设 |
+| `design-review-findings.md` | `/design-review` | 视觉审计发现、AI 劣质感检测结果、评分（A-F）、修复优先级清单 |
 
 ### 永久制品（提交到版本库）
 
@@ -63,13 +66,16 @@
 | `/design-consultation` | `office-hours-output.md`、`ceo-review.md` |
 | `/plan-eng-review` | `ceo-review.md`、`office-hours-output.md` |
 | `/plan-design-review` | `eng-plan.md`、`DESIGN.md` |
-| `/implement` | `eng-plan.md`、`design-plan.md`、`DESIGN.md`、`ceo-review.md` |
+| `/tasks` | `eng-plan.md`、`ceo-review.md`、`design-plan.md`（可选） |
+| `/implement` | `tasks.md`、`sprint.md`、`eng-plan.md`、`design-plan.md`、`DESIGN.md`、`ceo-review.md` |
 | `/review` | `eng-plan.md`（用于对照架构约束） |
 | `/cso` | `eng-plan.md`、`review-findings.md` |
 | `/qa` | `review-findings.md`、`eng-plan.md` |
 | `/investigate` | `qa-findings.md`、`review-findings.md` |
-| `/design-review` | `DESIGN.md`、`design-plan.md` |
+| `/design-review` | `DESIGN.md`、`design-plan.md`（输出：`design-review-findings.md`） |
 | `/document-release` | `MILESTONES.md`（生成 Changelog 的依据） |
+
+> **闭环规则**：`/qa` 和 `/investigate` 修复问题后，需在 `tasks.md` 对应任务追加 `[FIXED]` 记录，并在 `TODOS.md` 标记已关闭，最后追加 `MILESTONES.md`。
 
 ---
 
@@ -99,4 +105,5 @@
 | 设计评审（`/plan-design-review`） | 每个页面/流程一批 |
 | 实现（`/implement`） | 每个文件或每个功能点一批 |
 | 代码审查（`/review`、`/qa`） | 每个审查维度（安全/测试/性能）一批 |
+| 任务分解（`/tasks`） | 每个功能模块一批 |
 | 文档生成（`/document-release`） | 每个章节一批 |
