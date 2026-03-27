@@ -268,11 +268,18 @@ PR 摘要：本轮 QA 发现 N 个缺陷，修复 M 个，健康分 X → Y。
 
 ---
 
-### Phase 6：TODOS.md 联动
+### Phase 6：闭环落盘
 
-如果 `TODOS.md` 存在：
+**TODOS.md 联动（如存在）：**
 - **新发现但未修复的缺陷** → 追加为 TODO，附带级别、复现步骤
 - **已修复的 TODO 项** → 标注 "Fixed by /qa，[日期]，修复详情：[摘要]"
+
+**tasks.md 回写（如存在 `.context/tasks.md`）：**
+- 找到对应任务，在任务末尾追加：
+  ```
+  [FIXED] YYYY-MM-DD — {一句话描述问题与修复} — 来自 qa-findings.md #{编号}
+  ```
+- 将任务状态从 `[ ] TODO` / `[→] IN PROGRESS` 更新为 `[✓] DONE`
 
 ---
 

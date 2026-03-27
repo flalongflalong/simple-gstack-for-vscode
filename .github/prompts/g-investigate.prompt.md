@@ -241,6 +241,16 @@ DEBUG REPORT
 [完整 DEBUG REPORT 内容]
 ```
 
+**闭环落盘（修复已完成时执行）：**
+
+1. **tasks.md 回写**（如存在 `.context/tasks.md`）：找到对应任务追加：
+   ```
+   [FIXED] YYYY-MM-DD — {一句话描述根因与修复} — 来自 investigation-report.md
+   ```
+   并将任务状态更新为 `[✓] DONE`
+
+2. **TODOS.md 关闭**（如存在）：将对应条目标注 `Fixed by /investigate，[日期]`
+
 在 `MILESTONES.md` 末尾追加：
 
 ```
