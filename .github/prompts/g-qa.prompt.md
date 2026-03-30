@@ -11,11 +11,32 @@ description: '全链路 QA 工程师：Diff 感知测试、原子修复循环、
 
 开始前，读取以下文件（存在则读，不存在则跳过）：
 
-1. `.context/eng-plan.md` — 架构蓝图（理解模块边界和依赖关系）
-2. `.context/review-findings.md` — 代码审查发现（哪些地方已标记为问题）
-3. `.context/cso-findings.md` — 安全审计发现（安全相关 bug 优先处理）
-4. `.github/copilot-instructions.md` — 项目约束（测试框架、运行命令）
-5. `TODOS.md` — 待办项（交叉检查已知 bug）
+1. `.context/README.md` — 确定当前活跃迭代目录
+2. `.context/eng-plan.md` — 架构蓝图（理解模块边界和依赖关系）
+3. `.context/review-findings.md` — 代码审查发现（哪些地方已标记为问题）
+4. `.context/cso-findings.md` — 安全审计发现（安全相关 bug 优先处理）
+5. `DESIGN.md` — 设计系统规范（前端相关 bug 校准依据）
+6. `.github/copilot-instructions.md` — 项目约束（测试框架、运行命令）
+7. `TODOS.md` — 待办项（交叉检查已知 bug）
+
+---
+
+## 🎯 测试深度选择 (Testing Tiers)
+
+解析用户请求，确定测试深度。如未明确指定，默认使用 **Standard**。
+
+| Tier | 修复范围 | 适用场景 |
+|------|----------|----------|
+| **Quick** | 仅 Critical + High | 紧急修复、快速验证核心功能 |
+| **Standard**（默认） | + Medium | 常规功能验收、分支合并前检查 |
+| **Exhaustive** | + Low + Cosmetic | 发布前全量审计、重大版本发布 |
+
+**Tier 决定修复范围**：
+- **Quick**：只修复 Critical + High，其余标记为 “deferred”
+- **Standard**：修复 Critical + High + Medium， Low 标记为 “deferred”
+- **Exhaustive**：修复所有级别，包括 Low 和 Cosmetic
+
+无法从源码修复的问题（如第三方 widget bug、基础设施问题），无论哪个 Tier 都标记为 “deferred”。
 
 ---
 
@@ -139,7 +160,9 @@ RECOMMENDATION: 选 A 或 C——没有回归测试的修复，等于等待 Bug 
 
 ### Phase 3：原子修复循环 (Atomic Fix Loop)
 
-**处理顺序**：Critical → High → Medium → Low（根据所选 Tier）
+**处理顺序**：Critical → High → Medium → Low（根据所选 Tier 截止）
+
+> **Tier 过滤**：只对当前 Tier 范围内的缺陷执行修复循环。超出 Tier 范围的缺陷记录在发现清单中并标记为 “deferred”，不执行修复。
 
 对每个缺陷，严格按以下子步骤执行：
 
@@ -318,4 +341,19 @@ Critical: N | High: N | Medium: N | Low: N
 
 ```
 | YYYY-MM-DD | /qa | 完成全链路 QA：[一句话总结] | .context/qa-findings.md |
+```
+
+**追加学习记录到 `.context/learnings.md`**
+
+QA 过程中如发现反复出现的 **Bug 模式、测试覆盖规律或架构薄弱点**，追加到 `.context/learnings.md`（不存在则创建）。只追加，不修改已有条目。
+
+**记录准则**：只记录“下次还会遇到”的规律性洞察，不记录一次性的个别缺陷。例如：
+- ✅ “该项目的表单提交普遍缺少双击防护”
+- ✅ “异步操作的错误处理往往只覆盖 happy path”
+- ❌ “账单页第 3 行的金额显示错误”
+
+格式：
+```markdown
+### [模式|陷阱|架构] (Patterns|Pitfalls|Architecture)
+- **[关键词]**: [洞察] — 来源: /qa, YYYY-MM-DD
 ```

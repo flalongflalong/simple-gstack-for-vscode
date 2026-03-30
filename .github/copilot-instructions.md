@@ -74,6 +74,7 @@
 | `qa-findings.md` | `/qa` | 缺陷列表、复现步骤、回归测试覆盖情况 |
 | `investigation-report.md` | `/investigate` | 根因分析链路、已排除假设、已验证假设 |
 | `design-review-findings.md` | `/design-review` | 视觉审计发现、AI 劣质感检测结果、评分（A-F）、修复优先级清单 |
+| `learnings.md` | `/review`、`/qa`、`/investigate`、`/cso`、`/plan-eng-review` | 项目学习记录：模式、陷阱、架构洞察（只追加，不修改已有条目） |
 
 ### 永久制品（全工程共享，提交到版本库）
 

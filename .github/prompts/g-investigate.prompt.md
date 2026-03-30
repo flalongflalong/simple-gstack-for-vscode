@@ -257,6 +257,21 @@ DEBUG REPORT
 | YYYY-MM-DD | /investigate | 完成 [症状描述] 根因调查，根因：[一句话] | .context/investigation-report.md |
 ```
 
+**追加学习记录到 `.context/learnings.md`**
+
+调查过程中如发现值得记录的**根因模式、调试经验或架构薄弱点**，追加到 `.context/learnings.md`（不存在则创建）。只追加，不修改已有条目。
+
+**记录准则**：只记录"下次还会遇到"的经验，不记录一次性的 Bug 详情。例如：
+- ✅ "本项目的内存泄漏通常源于未清理的事件监听器"
+- ✅ "网络超时的默认重试策略导致雪崩效应"
+- ❌ "auth.ts:47 的 token 过期未处理"
+
+格式：
+```markdown
+### [模式|陷阱|架构] (Patterns|Pitfalls|Architecture)
+- **[关键词]**: [洞察] — 来源: /investigate, YYYY-MM-DD
+```
+
 ---
 
 现在，请提供你观察到的报错日志、异常行为或问题描述，我将深呼吸，进入排障专家模式，从 **阶段 1：症状收集** 开始。

@@ -21,9 +21,33 @@ description: 'CSO：基础设施优先的全面安全审计——供应链、CI/
 
 开始审计前，先读取以下文件（存在则读，不存在则跳过）：
 
-1. `.context/eng-plan.md` — 架构蓝图（理解信任边界和数据流）
-2. `.context/review-findings.md` — 代码审查已发现的问题（避免重复，聚焦遗漏）
-3. `.github/copilot-instructions.md` — 技术栈约束（框架、工具链、注意事项）
+1. `.context/README.md` — 确定当前活跃迭代目录
+2. `.context/eng-plan.md` — 架构蓝图（理解信任边界和数据流）
+3. `.context/review-findings.md` — 代码审查已发现的问题（避免重复，聚焦遗漏）
+4. `ARCHITECTURE.md` — 已记录的架构决策（理解系统边界）
+5. `.github/copilot-instructions.md` — 技术栈约束（框架、工具链、注意事项）
+
+---
+
+## 🎯 审计模式选择 (Audit Modes)
+
+解析用户请求，确定审计范围。如未明确指定，默认运行全量审计。
+
+| 模式 | 覆盖范围 | 适用场景 |
+|------|----------|----------|
+| **全量审计**（默认） | Phase 0-13，8/10 置信度门槛 | 日常安全检查 |
+| `--comprehensive` | Phase 0-13，2/10 置信度门槛 | 月度深度扫描，更多发现（含 TENTATIVE） |
+| `--infra` | Phase 0-6, 11-13 | 仅基础设施（密钥、供应链、CI/CD、Docker、Webhook） |
+| `--code` | Phase 0-1, 7-10, 11-13 | 仅代码层（LLM、OWASP、STRIDE、数据分类） |
+| `--supply-chain` | Phase 0, 3, 11-13 | 仅依赖供应链审计 |
+| `--owasp` | Phase 0, 8, 11-13 | 仅 OWASP Top 10 检查 |
+| `--scope [domain]` | 聚焦特定领域 | 如 `--scope auth` 仅审计认证相关代码 |
+
+**模式解析规则**：
+1. 无标志 → 全量审计（8/10 置信度门槛）
+2. `--comprehensive` → 全量审计（2/10 置信度门槛），可与范围标志组合
+3. 范围标志（`--infra`、`--code`、`--supply-chain`、`--owasp`、`--scope`）**互斥**。如传入多个范围标志，立即报错：“错误：--infra 和 --code 互斥。请选择一个范围标志，或不加标志运行全量审计。” 安全工具**绝不能静默忽略用户意图**。
+4. Phase 0、1、11-13 **始终执行**，不受范围标志影响
 
 ---
 
@@ -396,7 +420,7 @@ RECOMMENDATION: 选 A——[一句话原因]
 ```markdown
 # 安全审计报告 (CSO Findings)
 日期：YYYY-MM-DD
-审计范围：[full | infra | code | owasp]
+审计范围：[full | comprehensive | infra | code | supply-chain | owasp | scope:X]
 技术栈：[检测到的栈]
 
 ## 发现汇总
@@ -416,6 +440,21 @@ CRITICAL：N 个 | HIGH：N 个 | MEDIUM：N 个
 
 ```
 | YYYY-MM-DD | /cso | 完成安全审计：[一句话总结] | .context/cso-findings.md |
+```
+
+**追加学习记录到 `.context/learnings.md`**
+
+审计过程中如发现值得记录的**安全模式、反复出现的漏洞类型或架构安全洞察**，追加到 `.context/learnings.md`（不存在则创建）。只追加，不修改已有条目。
+
+**记录准则**：只记录“下次还会遇到”的安全规律，不记录一次性的具体漏洞。例如：
+- ✅ “本项目的 Webhook 端点普遍缺少签名验证”
+- ✅ “CI/CD 工作流中第三方 Action 未固定 SHA 是常见问题”
+- ❌ “api/webhook.ts:24 缺少 HMAC 校验”
+
+格式：
+```markdown
+### [模式|陷阱|架构] (Patterns|Pitfalls|Architecture)
+- **[关键词]**: [洞察] — 来源: /cso, YYYY-MM-DD
 ```
 
 ---

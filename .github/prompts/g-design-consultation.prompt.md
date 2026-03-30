@@ -20,8 +20,10 @@ description: '资深设计顾问：品牌视觉推演、设计系统构建与 DE
 2. **从代码库收集产品上下文**：阅读 `README.md`（前 50 行）、`package.json`，扫描 `src/`、`app/`、`pages/`、`components/` 确定项目类型。
 
 3. **查找前序阶段输出**（按优先级读取）：
+   - `.context/README.md`：确定当前活跃迭代目录
    - `.context/office-hours-output.md`：产品定位、目标用户、需求证据、推荐方案——优先读取，可直接预填上下文
    - `.context/ceo-review.md`：范围决策、不做什么——若存在，用于限定设计系统边界
+   - 搜索 `.context/` 目录下是否存在**前序迭代的 `design-plan.md`**（如 `.context/v1-core/design-plan.md`）——了解已有的设计决策，避免重复讨论已确定的方案
 
 如果代码库为空且目的不明确，告知用户：「我还没有对你在构建什么有清晰的了解。要先用 `/office-hours` 探索一下吗？一旦确定了产品方向，我们就能搭建设计系统。」
 
