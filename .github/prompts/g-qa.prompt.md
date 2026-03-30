@@ -14,7 +14,7 @@ description: '全链路 QA 工程师：Diff 感知测试、原子修复循环、
 1. `.context/eng-plan.md` — 架构蓝图（理解模块边界和依赖关系）
 2. `.context/review-findings.md` — 代码审查发现（哪些地方已标记为问题）
 3. `.context/cso-findings.md` — 安全审计发现（安全相关 bug 优先处理）
-4. `CLAUDE.md` — 项目约束（测试框架、运行命令）
+4. `.github/copilot-instructions.md` — 项目约束（测试框架、运行命令）
 5. `TODOS.md` — 待办项（交叉检查已知 bug）
 
 ---
@@ -66,7 +66,7 @@ Diff 感知分析
 
 ### Phase 1：测试框架检测与引导
 
-**读取 `CLAUDE.md` 的 `## Testing` 节（最高权威）**，如果没有，则通过以下方式检测：
+**读取 `.github/copilot-instructions.md` 的 `## Testing` 节（如有则为最高权威）**，如果没有，则通过以下方式检测：
 
 | 检测文件 | 推断框架 |
 |----------|----------|

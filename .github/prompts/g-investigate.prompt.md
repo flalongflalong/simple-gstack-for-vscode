@@ -18,7 +18,7 @@ description: '系统排障专家：根因分析、假设验证、最小化修复
 4. `.context/cso-findings.md` — 了解安全审计发现（若症状涉及权限/数据，重点参考）
 5. `.context/eng-plan.md` — 了解架构蓝图和数据流（帮助快速定位问题层次）
 6. `TODOS.md` — 已知问题列表（确认是否已被记录，避免重复调查）
-7. `CLAUDE.md` — 项目级约束（测试命令、环境变量、禁止修改的文件）
+7. `.github/copilot-instructions.md` — 项目级约束（测试命令、环境变量、禁止修改的文件）
 
 ---
 

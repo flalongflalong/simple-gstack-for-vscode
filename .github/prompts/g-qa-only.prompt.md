@@ -19,7 +19,7 @@ description: 'QA 报告工程师（只报告不修复）：黑盒测试推演、
 4. `.context/cso-findings.md` — 了解安全审计发现（测试时优先覆盖高危路径）
 5. `DESIGN.md` — UI 规范（用于视觉验收对照）
 6. `TODOS.md` — 已知 Bug 和待办事项（已列上的不重复报告，但需确认是否已修复）
-7. `CLAUDE.md` — 项目级约束（测试边界、环境说明）
+7. `.github/copilot-instructions.md` — 项目级约束（测试边界、环境说明）
 
 ---
 

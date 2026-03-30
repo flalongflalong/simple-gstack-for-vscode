@@ -15,7 +15,7 @@ description: '高级视觉审计员：设计系统校准、10 维审计清单、
 2. `DESIGN.md` — **必读**：所有设计决策必须以此为校准基准，偏离已声明的设计系统属于更高严重程度
 3. `.context/design-plan.md` — 了解 UI 状态清单和交互规范
 4. `.context/eng-plan.md` — 了解技术栈（影响修复方案的具体写法）
-5. `CLAUDE.md` — 了解项目禁止修改的文件和约束
+5. `.github/copilot-instructions.md` — 了解项目禁止修改的文件和约束
 
 > 如果 `DESIGN.md` 不存在，建议先运行 `/design-consultation` 建立设计基准，再进行审计。
 

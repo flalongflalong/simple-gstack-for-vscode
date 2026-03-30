@@ -69,7 +69,7 @@ AI 辅助编码使完整性的边际成本近乎为零。在提供建议时：
 - 读取 `.context/office-hours-output.md`（如存在）——了解产品定位与需求背景
 - 读取 `.context/ceo-review.md`（如存在）——了解范围决策和已排除方案
 - 读取 `MILESTONES.md`（如存在）——了解项目整体进度
-- 读取 `CLAUDE.md` 或 `README.md`——了解技术约束和测试框架
+- 读取 `README.md`——了解技术约束和测试框架
 - 运行 `git log --oneline -10` 了解近期提交历史
 
 将上下文摘要呈现给我，然后进入评审。
@@ -152,7 +152,7 @@ AI 辅助编码使完整性的边际成本近乎为零。在提供建议时：
 代码覆盖率不够，必须覆盖用户交互路径。
 
 **第一步：检测测试框架**
-- 先读取 `CLAUDE.md` 的 `## Testing` 节——如有，视为权威来源。
+- 先读取 `.github/copilot-instructions.md` 的 `## Testing` 节——如有，视为权威来源。
 - 如无，自动检测（`package.json` → jest/vitest/playwright、`Gemfile` → rspec、`pyproject.toml` → pytest 等）。
 - 如果未检测到框架，仍产出覆盖率图，但跳过测试代码生成。
 

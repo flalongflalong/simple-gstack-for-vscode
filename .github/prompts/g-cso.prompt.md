@@ -23,7 +23,7 @@ description: 'CSO：基础设施优先的全面安全审计——供应链、CI/
 
 1. `.context/eng-plan.md` — 架构蓝图（理解信任边界和数据流）
 2. `.context/review-findings.md` — 代码审查已发现的问题（避免重复，聚焦遗漏）
-3. `CLAUDE.md` — 技术栈约束（框架、工具链、注意事项）
+3. `.github/copilot-instructions.md` — 技术栈约束（框架、工具链、注意事项）
 
 ---
 

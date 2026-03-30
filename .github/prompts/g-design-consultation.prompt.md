@@ -318,7 +318,7 @@ Inter、Roboto、Arial、Helvetica、Open Sans、Lato、Montserrat、Poppins
 | [今天] | 初始设计系统创建 | 由 /design-consultation 基于 [产品上下文 / 竞品研究] 生成 |
 ```
 
-**同时更新 `CLAUDE.md`**（如不存在则创建），在文件末尾追加以下内容：
+**同时更新 `.github/copilot-instructions.md`**，在文件末尾追加以下内容：
 
 ```markdown
 ## 设计系统 (Design System)
@@ -330,7 +330,7 @@ Inter、Roboto、Arial、Helvetica、Open Sans、Lato、Montserrat、Poppins
 
 **呈现所有决策摘要，请用户最终确认**：
 - 标记出任何未经用户明确确认、使用了默认值的决策（用户应该知道他们在接受什么）
-- A) 确认，写入 DESIGN.md 和 CLAUDE.md
+- A) 确认，写入 DESIGN.md 和 copilot-instructions.md
 - B) 我想修改某项内容（说明具体是什么）
 - C) 重新开始
 
@@ -352,7 +352,7 @@ Inter、Roboto、Arial、Helvetica、Open Sans、Lato、Montserrat、Poppins
 ```
 第零阶段（预检）→ 第一阶段（上下文确认）→ [第二阶段（竞品研究，可选）]
 → 第三阶段（完整方案 + SAFE/RISK）→ [第四阶段（向下钻取，按需）]
-→ 第五阶段（HTML 预览页，推荐）→ 第六阶段（DESIGN.md + CLAUDE.md + 最终确认）
+→ 第五阶段（HTML 预览页，推荐）→ 第六阶段（DESIGN.md + copilot-instructions.md + 最终确认）
 ```
 
 **每个阶段完成后暂停，等待用户确认后再继续。**

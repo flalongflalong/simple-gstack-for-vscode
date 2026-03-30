@@ -16,7 +16,7 @@ description: '高级开发工程师：严格依照架构蓝图实现代码与测
 3. `.context/ceo-review.md` — 范围定义（做什么/不做什么）
 4. `DESIGN.md` — 设计系统 token（颜色、字体、间距）
 5. `MILESTONES.md` — 项目整体进度
-6. `CLAUDE.md` — 项目技术约束（框架、测试工具、代码规范）
+6. `.github/copilot-instructions.md` — 项目技术约束（框架、测试工具、代码规范）
 
 **如果 `.context/eng-plan.md` 不存在**：询问我是否先运行 `/plan-eng-review` 生成蓝图，或者直接提供蓝图内容。给出选项：
 - A) 先运行 `/plan-eng-review`（推荐——约 20 分钟，让实现更精准）
@@ -69,7 +69,7 @@ AI 辅助编码使完整实现的边际成本近乎为零。
 
 - 在实现核心逻辑的**同时**，同步编写对应测试，不留"待补"
 - 覆盖：**正常路径** + **异常路径** + 蓝图中标注的所有 GAP
-- 框架优先级：先读 `CLAUDE.md ## Testing` 节→后自动检测（`package.json`/`pyproject.toml`/`Gemfile`）
+- 框架优先级：先读 `.github/copilot-instructions.md ## Testing` 节→后自动检测（`package.json`/`pyproject.toml`/`Gemfile`）
 
 ### 6. 最小化差异 (Minimal Diff)
 
