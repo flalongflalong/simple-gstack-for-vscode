@@ -161,3 +161,48 @@
 | 代码审查（`/review`、`/qa`） | 每个审查维度（安全/测试/性能）一批 |
 | 任务分解（`/tasks`） | 每个功能模块一批 |
 | 文档生成（`/document-release`） | 每个章节一批 |
+
+---
+
+## 🔬 任务粒度标准 (Task Granularity Standards)
+
+**目的：所有任务分解（无论由 `/tasks` 还是其他角色产出）都必须遵守统一的原子粒度标准，防止任务过大难以验收或过小制造噪音。**
+
+### 原子任务定义
+
+每个任务必须满足：
+- **时间范围**：预估 30 分钟 ~ 4 小时可完成
+- **单一职责**：一个任务只做一件事，有明确的完成判定条件
+- **可独立验收**：完成后可通过具体的验收条件（测试通过、行为可观测）确认
+
+### 拆分信号（任务过大，需要拆分）
+
+出现以下任一情况时，必须将任务拆分为更小的子任务：
+- 描述中包含 **"并且"、"同时"、"以及"** 等并列连接词
+- 涉及 **≥ 3 个独立子功能**（如：创建模型 + 写 API + 加验证 + 写测试）
+- 预估耗时 **> 4 小时**
+- 跨越 **≥ 2 个不相关模块**（如前端 + 后端 + 数据库迁移）
+
+### 合并信号（任务过小，应该合并）
+
+出现以下任一情况时，应将多个任务合并为一个：
+- 修改的是 **同一文件中相邻的函数/方法**
+- 合并后预估耗时仍 **< 30 分钟**
+- 多个任务之间存在 **强顺序依赖**，无法独立验收
+
+### 验收条件书写规则
+
+每个任务的验收条件必须是 **可机器验证** 或 **可 grep 验证** 的，例如：
+- ✅ `运行 npm test 全部通过`
+- ✅ `GET /api/users 返回 200 且包含 pagination 字段`
+- ✅ `文件 src/auth.ts 中存在 validateToken 函数`
+- ❌ `代码质量良好`（不可验证）
+- ❌ `用户体验提升`（不可量化）
+
+<!-- gstack Configuration -->
+# Instructions for gstack roles
+
+- Treat `/ceo`, `/cso`, `/office-hours`, `/implement`, `/review`, `/qa`, `/qa-only`, `/tasks`, `/investigate`, `/plan-eng-review`, `/plan-design-review`, `/design-consultation`, `/design-review`, `/document-release` as role invocations.
+- When a user invokes any of the above (with or without the `/` prefix), load the matching skill from `.github/skills/g-{角色名}/SKILL.md`, then read and execute the referenced `.github/prompts/g-{角色名}.prompt.md`.
+- Do not apply gstack role workflows unless the user explicitly invokes a role command.
+<!-- /gstack Configuration -->

@@ -13,12 +13,16 @@ description: 'Staff 工程师：合并前防线审查、范围漂移检测、测
 
 1. `.context/README.md` — 确定当前活跃迭代目录
 2. `.context/eng-plan.md` — 架构蓝图（用于范围漂移检测的权威参照）
-3. `.context/ceo-review.md` — 范围定义（做什么/不做什么）
-4. `ARCHITECTURE.md` — 已记录的架构决策（ADR），确保审查标准与既有决策一致
-5. `MILESTONES.md` — 项目整体进度
-6. `TODOS.md` — 待办项（用于交叉检查）
-7. `DESIGN.md` — 设计系统规范（如存在，Design Review Lite 将以此为校准基准）
-8. `.github/copilot-instructions.md` — 项目约束（框架、测试工具、代码规范）
+3. `.context/tasks.md` — 任务清单（任务完成状态和验证命令，用于完成度核查与范围漂移交叉检查）
+4. `.context/ceo-review.md` — 范围定义（做什么/不做什么）
+5. `ARCHITECTURE.md` — 已记录的架构决策（ADR），确保审查标准与既有决策一致
+6. `MILESTONES.md` — 项目整体进度
+7. `TODOS.md` — 待办项（用于交叉检查）
+8. `DESIGN.md` — 设计系统规范（如存在，Design Review Lite 将以此为校准基准）
+9. `.github/copilot-instructions.md` — 项目约束（框架、测试工具、代码规范）
+10. `.planning/STATE.md` — GSD 项目状态（若使用 GSD 工作流）
+11. `.planning/phases/*/PLAN.md` — GSD 执行计划（task 列表、wave 划分，用于范围漂移对照）
+12. `.planning/phases/*/VERIFICATION.md` — GSD 自动验证结果（避免重复检查已验证项）
 
 ---
 
@@ -32,6 +36,7 @@ description: 'Staff 工程师：合并前防线审查、范围漂移检测、测
 
 1. 识别**原始意图**：从以下来源推断本次变更应该做什么：
    - `.context/eng-plan.md` 的 "NOT in scope" 节和功能列表（**最高权威**）
+   - `.context/tasks.md` 的任务清单（**任务粒度的补充权威**：每个任务的描述、验收标准和预期涉及文件——哪些应已完成、验证命令是什么）
    - `.context/ceo-review.md` 的范围定义
    - Commit 信息（`git log` 最近几条）
    - `TODOS.md` 中的待办项
@@ -99,6 +104,7 @@ description: 'Staff 工程师：合并前防线审查、范围漂移检测、测
 - **范围漂移（代码层面）**：是否改了不必要的存量代码——比 Step 0 更细粒度
 - **Magic Numbers / 字符串耦合**：硬编码魔法数字或字符串是否应提取为常量？
 - **ASCII 图过时**：修改了带有 ASCII 架构图注释的代码？那些图是否仍然准确？
+- **深模块检查 (Deep Module)**：新引入的类/服务是"小接口隐藏大实现"（深模块，好）还是接口方法数接近实现复杂度（浅模块，异味）？浅模块意味着调用方需要理解内部细节，可测试性差——应指出并建议如何收敛接口。
 
 *(输出 INFORMATIONAL 发现，等待我确认后，进入 Step 2.5)*
 
@@ -218,6 +224,8 @@ GAP：8 条路径需要测试 (2 条需 E2E)
 
 对每个 AUTO-FIX，直接给出修改后的完整代码块，输出一行摘要：
 `[AUTO-FIX] [文件:行号] 问题 → 已修复`
+
+**AUTO-FIX 验证要求**：所有 AUTO-FIX 代码块提供后，如果项目有可运行的测试命令，立即运行一次——提供代码不等于修复生效。如果测试失败，撤回相关 AUTO-FIX 并将其降级为 ASK 项重新决策。
 
 **Step 4c：ASK 项（批量提问）**
 

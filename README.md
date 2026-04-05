@@ -11,13 +11,19 @@
 - 提供模型选择建议，帮助在不同开发阶段选用最合适的 AI 模型
 - 强化 `.context/` 迭代上下文约定，支持读取当前活跃迭代与历史方案
 - 关键角色支持结构化审查模式与经验沉淀，减少重复讨论和重复踩坑
+- 集成 [get-shit-done](https://github.com/get-shit-done-cc/get-shit-done) (GSD) 框架，补充状态持久化、wave 并行执行和自动验证闭环能力
+- gstack × GSD 跨系统制品桥接，`.context/` 与 `.planning/` 目录自动互通
 
 ## 快速开始
 
 1. 克隆本仓库到本地（或直接复制 `.github/` 目录到你的项目中）
-2. 用 VS Code 打开项目
-3. 打开 Copilot Chat，输入 `/` 即可看到可用的 Prompt 列表
-4. 按照下方[协作流水线](#%EF%B8%8F-标准协作流水线-the-sprint-workflow)中的顺序调用各角色
+2. 安装 GSD 框架（可选但推荐）：
+   ```bash
+   npx get-shit-done-cc --copilot --local
+   ```
+3. 用 VS Code 打开项目
+4. 打开 Copilot Chat，输入 `/` 即可看到可用的 Prompt 列表
+5. 按照下方[协作流水线](#%EF%B8%8F-标准协作流水线-the-sprint-workflow)中的顺序调用各角色
 
 历史升级内容与同步记录见 [CHANGELOG.md](CHANGELOG.md)。
 
@@ -58,34 +64,93 @@
 
 ## 🏎️ 标准协作流水线 (The Sprint Workflow)
 
-### 1. 需求与规划 (Think & Plan)
-- **`/office-hours` ➔ `/ceo`**：确认点子价值，选定战术模式（扩张或缩减）。
-- **`/plan-eng-review`**：**[关键步骤]** 生成架构蓝图、数据流和测试矩阵。不要在此步骤直接写业务代码。
-- **`/tasks`**：将架构蓝图拆解为原子任务清单（`tasks.md`）与迭代看板（`sprint.md`），供 `/implement` 按序实施。
-- **`/design-consultation` ➔ `/plan-design-review`**：确定前端视觉规范，预审空状态和错误提示。
+本项目采用 **gstack（角色思考）+ GSD（自动执行）** 联合工作模式，各取所长：
 
-### 2. 工程施工 (Build)
-- 开启 Copilot Edit 模式（或在 Chat 中明确指定文件）。
-- 使用 **`/implement`** 指令，附上第一步产出的蓝图。
-- *提示：常规业务用 Sonnet；极其复杂的算法或并发逻辑用 o3 / Codex。*
+```
+  Think（gstack）            Execute（GSD）             Verify（gstack）
+┌──────────────────┐    ┌────────────────────────┐    ┌──────────────────┐
+│ /office-hours    │    │ /gsd-plan-phase        │    │ /review          │
+│ /ceo             │ ─→ │ /gsd-execute-phase     │ ─→ │ /qa              │
+│ /plan-eng-review │    │  (状态持久化 + 并行)    │    │ /cso             │
+└──────────────────┘    └────────────────────────┘    └──────────────────┘
+  产出 → .context/         消费 → --prd eng-plan.md       消费 → .planning/
+```
 
-### 3. 验收与分流 (Verify & Route)
-完成编码后，使用 **`/review`** 进行合并前审查。根据 Review 建议的性质分流：
-- 🔀 **逻辑漏洞 / 性能瓶颈 / 报错** ➔ **`/qa`**【缺陷修复 + 补回归测试】
-- 🔀 **功能漏做 / 不符合架构蓝图** ➔ **`/implement`**【代码补全与蓝图对齐】
-- 🔀 **敏感操作 / 越权风险** ➔ **`/cso`**【安全重构】
+### 阶段 1：需求与架构 — gstack 主导 (Think)
 
-### 4. 交付 (Polish & Ship)
-- 运行前端，使用 **`/design-review`** 消除 UI 上的"AI 塑料感"。
-- 准备提交 PR，使用 **`/document-release`** 生成专业的 Release Notes。
+> gstack 的角色扮演体系擅长挑战需求、审视架构，这些是 GSD 不具备的能力。
+
+1. **`/office-hours`**：产品发现 — 通过灵魂拷问确认需求不是伪命题
+2. **`/ceo`**：战略过滤 — 决定做什么、不做什么、边界在哪
+3. **`/plan-eng-review`**：架构蓝图 — 锁定数据流、接口契约、测试矩阵，产出 `eng-plan.md`
+4. **`/design-consultation` ➔ `/plan-design-review`**（可选）：前端视觉规范和交互预审
+
+> **产出位置**：`.context/{功能名}/eng-plan.md`、`ceo-review.md` 等
+
+### 阶段 2：任务规划与执行 — GSD 主导 (Plan & Execute)
+
+> GSD 在任务分解（wave 并行）、状态持久化和自动验证上远强于 gstack 的 `/tasks` + `/implement`。
+
+1. **注入架构蓝图**（关键桥接点——让 GSD 读到 gstack 的产出）：
+   ```
+   /gsd-plan-phase <phase> --prd .context/{功能名}/eng-plan.md
+   ```
+   GSD 会自动将 `eng-plan.md` 转换为 `.planning/` 下的 `CONTEXT.md`。
+
+2. **执行**：
+   ```
+   /gsd-execute-phase <phase>
+   ```
+   GSD 按 wave 分组并行执行任务，每个 task 原子提交，自动做 checkpoint。
+
+> **产出位置**：`.planning/phases/*/PLAN.md`、`STATE.md`、`VERIFICATION.md`
+
+### 阶段 3：审查与质量 — gstack 主导 (Verify)
+
+> GSD 的 verifier 只检查"目标是否达成"，gstack 的审查角色能发现竞态条件、安全漏洞、范围漂移等深层问题。
+
+使用 **`/review`** 进行合并前审查。它会同时读取 `.context/eng-plan.md` 和 `.planning/PLAN.md`，对照范围漂移。根据发现分流：
+
+- 🔀 **逻辑漏洞 / 性能瓶颈 / 回归缺陷** ➔ **`/qa`**（缺陷修复 + 回归测试）
+- 🔀 **功能漏做 / 不符合架构蓝图** ➔ 回到阶段 2 补充执行
+- 🔀 **敏感操作 / 越权风险** ➔ **`/cso`**（安全审计 + STRIDE 威胁建模）
+- 🔀 **深层疑难 Bug** ➔ **`/investigate`**（根因分析 + 假设验证链路）
+
+### 阶段 4：交付 (Polish & Ship)
+
+- **`/design-review`**：消除 UI 上的"AI 塑料感"
+- **`/document-release`**：生成面向用户的 Release Notes
+
+### 纯 gstack 模式（不使用 GSD）
+
+如果不安装 GSD，仍可使用纯 gstack 流程：
+
+```
+/office-hours → /ceo → /plan-eng-review → /tasks → /implement → /review → /qa → /cso
+```
+
+此模式下由 `/tasks` 替代 GSD 做任务分解，`/implement` 直接编码。适用于小型改动或不需要状态持久化的场景。
+
+---
+
+## 📂 制品目录说明
+
+| 目录 | 来源 | 内容 |
+|------|------|------|
+| `.context/{功能名}/` | gstack 角色 | `eng-plan.md`（架构蓝图）、`ceo-review.md`（范围定义）、`review-findings.md`（审查发现）等 |
+| `.planning/` | GSD 框架 | `STATE.md`（项目状态）、`ROADMAP.md`（路线图）、`phases/*/PLAN.md`（执行计划） |
+| `MILESTONES.md` | 两个系统共享 | 全局进度日志，gstack 和 GSD 角色完成工作后都会追加 |
+
+两个系统的制品通过 `copilot-instructions.md` 中的桥接规则自动互通，无需手动同步。
 
 ---
 
 ## 💡 核心协作铁律
 
-1. **角色隔离**：画图纸的（`/plan-eng-review`）绝对不直接写核心代码；写代码的（`/implement`）绝对不自己做代码审查。隔离能最大程度消除 AI 的"自恋偏见"。
+1. **角色隔离**：画图纸的（`/plan-eng-review`）绝对不直接写核心代码；写代码的（`/implement`、GSD executor）绝对不自己做代码审查。隔离能最大程度消除 AI 的"自恋偏见"。
 2. **拒绝盲目修改**：遵循 `/investigate` 的精神——没有明确的日志证据或错误栈，绝对不瞎改代码。
-3. **测试驱动闭环**：无论是 `/implement` 首次写代码，还是 `/qa` 修 Bug，都必须伴随测试用例的产出。
+3. **测试驱动闭环**：无论是首次编码还是修 Bug，都必须伴随测试用例的产出。
+4. **制品互通**：gstack → GSD 用 `--prd` 注入；GSD → gstack 通过 `/review` 等角色自动读取 `.planning/` 制品。不要让任何一方在信息真空中工作。
 
 ---
 
