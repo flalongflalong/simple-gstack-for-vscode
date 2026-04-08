@@ -6,7 +6,7 @@
 
 ## 特性
 
-- 13 个角色 Prompt，覆盖从需求孵化到版本发布的完整研发周期
+- 14 个角色 Prompt，覆盖从需求孵化到版本发布、再到上下文归档的完整研发周期
 - 直接在 VS Code Copilot Chat 中通过 `/指令名` 调用，零配置
 - 提供模型选择建议，帮助在不同开发阶段选用最合适的 AI 模型
 - 强化 `.context/` 迭代上下文约定，支持读取当前活跃迭代与历史方案
@@ -44,6 +44,7 @@
 | **`/investigate`** | 排障专家 | **根因调查** | 事故中，通过假设验证寻找深层报错的真实原因。 |
 | **`/design-review`** | 视觉审计员 | **审美抛光** | 发布前，对已实现的 UI 进行实物打磨与细节纠偏。 |
 | **`/document-release`** | 技术作家 | **商业包装** | 发版前，将代码改动包装为面向用户的 Changelog。 |
+| **`/context-archive`** | 归档师 | **上下文治理** | 里程碑后，清理过程制品、提炼决策摘要、归档历史文件，为下轮迭代留下干净现场。 |
 
 ---
 
@@ -53,12 +54,13 @@
 
 | 开发阶段 | 建议模型 | 匹配理由 |
 | :--- | :--- | :--- |
-| **构思与架构 (`/ceo`, `/plan-eng-review`)** | Claude Opus | 擅长复杂系统设计和深度推理，幻觉极低。 |
+| **构思与架构 (`/ceo`, `/plan-eng-review`, `/tasks`)** | Claude Opus | 擅长复杂系统设计和深度推理，幻觉极低。任务拆分需要对架构蓝图做深度理解与依赖排序。 |
 | **业务编码 (`/implement` - UI/业务)** | Claude Sonnet | 速度极快，对前端框架和现代语法支持完善。 |
 | **核心攻坚 (`/implement` - 算法/底层)** | o3 / Codex | 擅长复杂算法、底层协议、并发锁逻辑及数学闭环。 |
 | **严苛审查 (`/review`, `/cso`)** | GPT-4o / o3 | 规则遵循严格，易发现隐藏的安全与逻辑漏洞。 |
 | **深度排障 (`/investigate`, `/qa`)** | o3 / Codex | 针对编程深度优化，逻辑链路清晰，适合死磕疑难杂症。 |
 | **视觉与文档 (`/design-review`, `/document-release`)** | Claude Sonnet | 输出最像人类，文字有温度，对 CSS 色彩和间距感官敏锐。 |
+| **上下文归档 (`/context-archive`)** | Claude Opus | 需要理解全量上下文后做信息提炼与取舍判断，对精确度要求高。 |
 
 ---
 
@@ -121,15 +123,21 @@
 - **`/design-review`**：消除 UI 上的"AI 塑料感"
 - **`/document-release`**：生成面向用户的 Release Notes
 
+### 阶段 5：归档 (Archive & Reset)
+
+> 里程碑发布后，清理过程制品，为下一轮迭代准备干净的工程现场。
+
+- **`/context-archive`**：提炼 `eng-plan.md`、`ceo-review.md` 为决策摘要，将 `tasks.md`、`sprint.md`、审查发现等过程文件移入 `.context-archive/{功能名}/`，合并 `learnings.md` 到根目录。归档前会做门控检查（里程碑记录 + 文档同步），归档后输出上下文体积减少比例。
+
 ### 纯 gstack 模式（不使用 GSD）
 
 如果不安装 GSD，仍可使用纯 gstack 流程：
 
 ```
-/office-hours → /ceo → /plan-eng-review → /tasks → /implement → /review → /qa → /cso
+/office-hours → /ceo → /plan-eng-review → /tasks → /implement → /review → /qa → /cso → /document-release → /context-archive
 ```
 
-此模式下由 `/tasks` 替代 GSD 做任务分解，`/implement` 直接编码。适用于小型改动或不需要状态持久化的场景。
+此模式下由 `/tasks` 替代 GSD 做任务分解，`/implement` 直接编码。最后用 `/context-archive` 归档过程制品，为下次迭代留下干净现场。
 
 ---
 
@@ -138,6 +146,7 @@
 | 目录 | 来源 | 内容 |
 |------|------|------|
 | `.context/{功能名}/` | gstack 角色 | `eng-plan.md`（架构蓝图）、`ceo-review.md`（范围定义）、`review-findings.md`（审查发现）等 |
+| `.context-archive/{功能名}/` | `/context-archive` | 归档的过程制品原件（`tasks.md`、`sprint.md`、审查发现等）及提炼前的原始文件 |
 | `.planning/` | GSD 框架 | `STATE.md`（项目状态）、`ROADMAP.md`（路线图）、`phases/*/PLAN.md`（执行计划） |
 | `MILESTONES.md` | 两个系统共享 | 全局进度日志，gstack 和 GSD 角色完成工作后都会追加 |
 

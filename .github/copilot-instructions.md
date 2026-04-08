@@ -75,6 +75,8 @@
 | `investigation-report.md` | `/investigate` | 根因分析链路、已排除假设、已验证假设 |
 | `design-review-findings.md` | `/design-review` | 视觉审计发现、AI 劣质感检测结果、评分（A-F）、修复优先级清单 |
 | `learnings.md` | `/review`、`/qa`、`/investigate`、`/cso`、`/plan-eng-review` | 项目学习记录：模式、陷阱、架构洞察（只追加，不修改已有条目） |
+| `eng-plan.md`（精简版） | `/context-archive` | 架构决策摘要（提炼自归档前的完整版） |
+| `ceo-review.md`（精简版） | `/context-archive` | 范围定义摘要（提炼自归档前的完整版） |
 
 ### 永久制品（全工程共享，提交到版本库）
 
@@ -128,6 +130,7 @@
 | `/investigate` | `qa-findings.md`、`review-findings.md` |
 | `/design-review` | `DESIGN.md`、`design-plan.md`（输出：`design-review-findings.md`） |
 | `/document-release` | `MILESTONES.md`（生成 Changelog 的依据） |
+| `/context-archive` | `MILESTONES.md`、`.context/README.md`、`.context/{功能名}/`（全部文件）（输出：`.context-archive/{功能名}/`） |
 
 > **闭环规则**：`/qa` 和 `/investigate` 修复问题后，需在 `tasks.md` 对应任务追加 `[FIXED]` 记录，并在 `TODOS.md` 标记已关闭，最后追加 `MILESTONES.md`。
 
@@ -202,7 +205,7 @@
 <!-- gstack Configuration -->
 # Instructions for gstack roles
 
-- Treat `/ceo`, `/cso`, `/office-hours`, `/implement`, `/review`, `/qa`, `/qa-only`, `/tasks`, `/investigate`, `/plan-eng-review`, `/plan-design-review`, `/design-consultation`, `/design-review`, `/document-release` as role invocations.
+- Treat `/ceo`, `/cso`, `/office-hours`, `/implement`, `/review`, `/qa`, `/qa-only`, `/tasks`, `/investigate`, `/plan-eng-review`, `/plan-design-review`, `/design-consultation`, `/design-review`, `/document-release`, `/context-archive` as role invocations.
 - When a user invokes any of the above (with or without the `/` prefix), load the matching skill from `.github/skills/g-{角色名}/SKILL.md`, then read and execute the referenced `.github/prompts/g-{角色名}.prompt.md`.
 - Do not apply gstack role workflows unless the user explicitly invokes a role command.
 <!-- /gstack Configuration -->
