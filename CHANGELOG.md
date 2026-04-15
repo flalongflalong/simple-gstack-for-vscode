@@ -2,6 +2,23 @@
 
 ## 2026-04-15
 
+### README 更新：移除 GSD、补全至 17 个角色
+
+移除所有 get-shit-done（GSD）相关内容，将仓库描述还原为纯 gstack 流程；同时补全 `/qa-only`、`/ship`、`/design-shotgun` 三个此前未列入的角色。
+
+- 移除特性列表中的 GSD 集成条目与 `.context/` + `.planning/` 桥接规则
+- 移除快速开始中的 `npx get-shit-done-cc` 安装步骤
+- 将"标准协作流水线"从 gstack × GSD 联合模式改写为纯 gstack 5 阶段流程
+- 制品目录说明移除 `.planning/` 行，改为 `MILESTONES.md` 与 `ARCHITECTURE.md`
+- 核心铁律第 4 条从"制品互通"改为"只看文件"原则
+- 角色总数从 14 更新为 17，补充 `/qa-only`、`/ship`、`/design-shotgun` 三行
+
+### 涉及文件
+
+- `README.md`
+
+## 2026-04-15
+
 ### Prompt 工程增强：Karpathy 原则、微示例与懒加载拆分
 
 本次更新专注于提升角色 prompt 的可执行性和 token 效率，共三个方向：引入 Karpathy 编码纪律、为高频违反规则添加微示例、将三个最大文件拆分为懒加载子模块。
