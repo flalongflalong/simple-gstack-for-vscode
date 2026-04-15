@@ -2,6 +2,28 @@
 
 ## 2026-04-15
 
+### 新增 `/upgrade` 角色：参考仓库持续同步升级
+
+引入 `/upgrade` 工具角色，支持定期拉取 `.tmp/` 下的参考仓库最新内容，分析变更并生成结构化升级提案，逐条审批后应用到角色 prompt 中，保持本仓库与上游工程实践持续同步。
+
+**设计原则**：半自动（AI 分析 + 人工审批），增量感知（只读本次变更文件），冲突标注（新内容与现有决策矛盾时单独讨论，不自动覆写）。
+
+- 新增 `.github/scripts/upgrade-refs.sh`：拉取 8 个参考仓库，生成 `.tmp/SYNC_REPORT.md` 变更摘要
+- 新增 `.github/skills/g-upgrade/SKILL.md`：角色入口
+- 新增 `.github/prompts/g-upgrade.prompt.md`：6 阶段分析流程（准备检查 → 读取变更 → 差距分析 → 生成提案 → 逐条审批 → 应用变更 → 记录提交）
+- `copilot-instructions.md` 注册 `/upgrade` 为角色调用
+- `README.md` 新增"工具角色"栏目，列出 `/upgrade`
+
+### 涉及文件
+
+- `.github/scripts/upgrade-refs.sh` *(新增)*
+- `.github/skills/g-upgrade/SKILL.md` *(新增)*
+- `.github/prompts/g-upgrade.prompt.md` *(新增)*
+- `.github/copilot-instructions.md`
+- `README.md`
+
+## 2026-04-15
+
 ### README 更新：移除 GSD、补全至 17 个角色
 
 移除所有 get-shit-done（GSD）相关内容，将仓库描述还原为纯 gstack 流程；同时补全 `/qa-only`、`/ship`、`/design-shotgun` 三个此前未列入的角色。

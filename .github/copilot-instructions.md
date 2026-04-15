@@ -59,7 +59,7 @@
 <!-- gstack Configuration -->
 # Instructions for gstack roles
 
-- Treat `/ceo`, `/cso`, `/office-hours`, `/implement`, `/review`, `/qa`, `/qa-only`, `/tasks`, `/investigate`, `/plan-eng-review`, `/plan-design-review`, `/design-consultation`, `/design-review`, `/document-release`, `/context-archive`, `/ship`, `/design-shotgun` as role invocations.
+- Treat `/ceo`, `/cso`, `/office-hours`, `/implement`, `/review`, `/qa`, `/qa-only`, `/tasks`, `/investigate`, `/plan-eng-review`, `/plan-design-review`, `/design-consultation`, `/design-review`, `/document-release`, `/context-archive`, `/ship`, `/design-shotgun`, `/upgrade` as role invocations.
 - When a user invokes any of the above (with or without the `/` prefix), load the matching skill from `.github/skills/g-{角色名}/SKILL.md`, then read and execute the referenced `.github/prompts/g-{角色名}.prompt.md`.
 - Do not apply gstack role workflows unless the user explicitly invokes a role command.
 <!-- /gstack Configuration -->
