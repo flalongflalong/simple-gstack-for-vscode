@@ -1,5 +1,50 @@
 # Changelog
 
+## 2026-04-15
+
+### Prompt 工程增强：Karpathy 原则、微示例与懒加载拆分
+
+本次更新专注于提升角色 prompt 的可执行性和 token 效率，共三个方向：引入 Karpathy 编码纪律、为高频违反规则添加微示例、将三个最大文件拆分为懒加载子模块。
+
+**Karpathy 原则落地（3 条）**
+
+- `/implement` 新增"歧义暂停规则"：发现多种解读时禁止默选，必须停下列出方案并等待确认。
+- `/implement` 新增"简洁性自检"作为 Done Gate 第 4 步：200 行能写成 50 行就重写。
+- `/implement` 新增"孤儿清理规则"：区分自己产生的死代码（必须清理）与已有死代码（提及不删）。
+
+**全局行为规则增强（Hermes 启发）**
+
+- `copilot-instructions.md` 新增"行动优先准则"和"迭代韧性准则"，防止纯文字描述意图而不行动、因步骤多而简化方案。
+- 核心链路 7 个角色（`/implement`、`/plan-eng-review`、`/tasks`、`/review`、`/qa`、`/investigate`、`/ceo`）统一加入角色边界声明和上下文栅栏。
+
+**懒加载拆分（3 个角色，7 个子文件）**
+
+- `/implement`（435→345 行）：提取 `done-gate.md`、`module-doc-standard.md`、`hard-rules.md`。
+- `/plan-eng-review`（632→286 行）：提取 `test-matrix.md`、`output-template.md`。
+- `/tasks`（532→384 行）：提取 `task-format.md`、`output-template.md`。
+
+**微示例（7 条）**
+
+为最容易被违反的规则添加内联 ❌/✅ 对比示例：契约至上、歧义暂停、孤儿清理、二次出现规则（均在 `/implement`）；过度工程化（`/plan-eng-review`）；任务粒度拆分、占位符扫描（`/tasks`）。
+
+### 涉及文件
+
+- `.github/copilot-instructions.md`
+- `.github/prompts/g-ceo.prompt.md`
+- `.github/prompts/g-implement.prompt.md`
+- `.github/prompts/g-implement/done-gate.md` *(新增)*
+- `.github/prompts/g-implement/hard-rules.md` *(新增)*
+- `.github/prompts/g-implement/module-doc-standard.md` *(新增)*
+- `.github/prompts/g-investigate.prompt.md`
+- `.github/prompts/g-plan-eng-review.prompt.md`
+- `.github/prompts/g-plan-eng-review/output-template.md` *(新增)*
+- `.github/prompts/g-plan-eng-review/test-matrix.md` *(新增)*
+- `.github/prompts/g-qa.prompt.md`
+- `.github/prompts/g-review.prompt.md`
+- `.github/prompts/g-tasks.prompt.md`
+- `.github/prompts/g-tasks/output-template.md` *(新增)*
+- `.github/prompts/g-tasks/task-format.md` *(新增)*
+
 ## 2026-04-08
 
 ### 新增上下文归档流程
