@@ -1,0 +1,5 @@
+interface:
+  display_name: "Gstack Document Release"
+  short_description: "Sync release docs safely."
+  default_prompt: "Use $gstack-document-release to update release documentation and polish CHANGELOG safely."
+  brand_color: "#10B981"

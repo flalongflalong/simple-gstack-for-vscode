@@ -1,0 +1,1 @@
+/Users/lww/.claude/plugins/sg-workflow/skills/sg-plan-design-review//SKILL.md

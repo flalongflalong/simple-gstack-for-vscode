@@ -1,0 +1,5 @@
+interface:
+  display_name: "Gstack Review"
+  short_description: "Review a diff before landing."
+  default_prompt: "Use $gstack-review to review the current diff for merge-blocking risks and test gaps."
+  brand_color: "#7C3AED"

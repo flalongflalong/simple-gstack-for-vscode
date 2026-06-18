@@ -1,0 +1,5 @@
+interface:
+  display_name: "Gstack Tasks"
+  short_description: "Break plans into tracked tasks."
+  default_prompt: "Use $gstack-tasks to break the active engineering plan into tasks and a sprint board."
+  brand_color: "#1F6FEB"

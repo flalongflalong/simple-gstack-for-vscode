@@ -1,0 +1,4 @@
+interface:
+  display_name: "Technical Doc"
+  short_description: "Write practical technical documents."
+  default_prompt: "Use $skill-technical-doc to write this technical document."

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Gstack Design Shotgun"
+  short_description: "Explore multiple UI directions."
+  default_prompt: "Use $gstack-design-shotgun to compare distinct design directions for this surface."
+  brand_color: "#F97316"

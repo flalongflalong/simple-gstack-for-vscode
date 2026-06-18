@@ -1,0 +1,5 @@
+interface:
+  display_name: "Gstack CEO"
+  short_description: "Challenge scope before planning."
+  default_prompt: "Use $gstack-ceo to challenge this feature scope before planning it."
+  brand_color: "#1F6FEB"

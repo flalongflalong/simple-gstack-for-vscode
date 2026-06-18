@@ -1,0 +1,39 @@
+{
+  "name": "simple-gstack-codex",
+  "version": "0.2.0",
+  "description": "Codex engineering operating system skills for file-first planning, implementation, review, QA, release, and context management.",
+  "author": {
+    "name": "lww",
+    "url": "https://github.com/flalongflalong/master"
+  },
+  "homepage": "https://github.com/flalongflalong/master",
+  "repository": "https://github.com/flalongflalong/master",
+  "license": "MIT",
+  "keywords": [
+    "codex",
+    "gstack",
+    "planning",
+    "review",
+    "qa"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Simple Gstack for Codex",
+    "shortDescription": "Run Codex as a file-first engineering OS.",
+    "longDescription": "A repo-linked Codex plugin that turns the gstack workflow into bounded Codex work modes with shared source-of-truth, artifact, stop, and verification rules.",
+    "developerName": "lww",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write",
+      "Review",
+      "Test"
+    ],
+    "defaultPrompt": [
+      "Use $gstack-plan to create the engineering plan.",
+      "Use $gstack-implement to execute the active task.",
+      "Use $gstack-review to inspect the current diff."
+    ],
+    "brandColor": "#1F6FEB"
+  }
+}

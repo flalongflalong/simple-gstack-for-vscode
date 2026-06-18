@@ -1,0 +1,5 @@
+interface:
+  display_name: "Gstack Context Archive"
+  short_description: "Archive completed iteration context."
+  default_prompt: "Use $gstack-context-archive to archive the completed iteration context safely."
+  brand_color: "#64748B"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Release DevOps"
+  short_description: "Handle Docker, CI, and release readiness."
+  default_prompt: "Use $skill-release-devops for this Docker, CI, or release task."

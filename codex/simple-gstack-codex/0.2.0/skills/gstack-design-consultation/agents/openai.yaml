@@ -1,0 +1,5 @@
+interface:
+  display_name: "Gstack Design Consultation"
+  short_description: "Create or refresh DESIGN.md."
+  default_prompt: "Use $gstack-design-consultation to define this product design system."
+  brand_color: "#8B5CF6"

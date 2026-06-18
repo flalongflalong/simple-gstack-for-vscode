@@ -1,0 +1,4 @@
+interface:
+  display_name: "Design UI"
+  short_description: "Choose page style and DESIGN.md direction."
+  default_prompt: "Use $skill-design-ui to choose the page style direction."

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Gstack Office Hours"
+  short_description: "Pressure-test ideas before coding."
+  default_prompt: "Use $gstack-office-hours to pressure-test this product idea before we plan or code."
+  brand_color: "#F59E0B"

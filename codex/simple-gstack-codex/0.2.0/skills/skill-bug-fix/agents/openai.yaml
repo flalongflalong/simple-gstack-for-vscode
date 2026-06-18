@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bug Fix"
+  short_description: "Fix one bug with evidence."
+  default_prompt: "Use $skill-bug-fix to reproduce and fix this bug."

@@ -21,3 +21,4 @@ build/
 # temporary files
 .tmp/
 tmp/
+.bak/

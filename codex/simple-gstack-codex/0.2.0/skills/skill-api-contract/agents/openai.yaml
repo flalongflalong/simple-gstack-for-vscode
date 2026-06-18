@@ -1,0 +1,4 @@
+interface:
+  display_name: "API Contract"
+  short_description: "Sync frontend/backend API contracts."
+  default_prompt: "Use $skill-api-contract to align this API contract."

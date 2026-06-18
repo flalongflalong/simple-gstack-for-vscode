@@ -1,0 +1,5 @@
+interface:
+  display_name: "Gstack Plan"
+  short_description: "Lock architecture before coding."
+  default_prompt: "Use $gstack-plan to create or refresh the engineering plan before implementation."
+  brand_color: "#1F6FEB"

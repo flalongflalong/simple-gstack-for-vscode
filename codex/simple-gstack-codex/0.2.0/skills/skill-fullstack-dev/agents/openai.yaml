@@ -1,0 +1,4 @@
+interface:
+  display_name: "Fullstack Dev"
+  short_description: "Implement small full-stack changes."
+  default_prompt: "Use $skill-fullstack-dev for this small full-stack change."

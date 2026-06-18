@@ -1,0 +1,5 @@
+interface:
+  display_name: "Gstack Plan Design Review"
+  short_description: "Review UI plans before coding."
+  default_prompt: "Use $gstack-plan-design-review to harden this UI plan before implementation."
+  brand_color: "#EC4899"

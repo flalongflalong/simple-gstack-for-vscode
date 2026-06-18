@@ -1,0 +1,5 @@
+interface:
+  display_name: "Gstack QA"
+  short_description: "Reproduce, fix, and verify bugs."
+  default_prompt: "Use $gstack-qa to reproduce this bug, apply the smallest fix, and add regression coverage."
+  brand_color: "#1F6FEB"

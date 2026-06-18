@@ -1,0 +1,5 @@
+interface:
+  display_name: "Gstack Implement"
+  short_description: "Implement planned tasks safely."
+  default_prompt: "Use $gstack-implement to execute the current planned task with tests and verification."
+  brand_color: "#1F6FEB"

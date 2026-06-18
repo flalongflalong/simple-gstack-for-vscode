@@ -1,0 +1,5 @@
+interface:
+  display_name: "Gstack Design Review"
+  short_description: "Audit implemented UI polish."
+  default_prompt: "Use $gstack-design-review to audit this implemented UI against DESIGN.md."
+  brand_color: "#06B6D4"

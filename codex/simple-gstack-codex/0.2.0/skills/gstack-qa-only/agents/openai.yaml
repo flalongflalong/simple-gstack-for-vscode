@@ -1,0 +1,5 @@
+interface:
+  display_name: "Gstack QA Only"
+  short_description: "Report bugs without fixing."
+  default_prompt: "Use $gstack-qa-only to test this change and produce a report without modifying code."
+  brand_color: "#0E7490"

@@ -1,0 +1,34 @@
+{
+  "name": "simple-gstack-en",
+  "version": "0.1.0",
+  "description": "Claude Code adaptation of gstack engineering workflow skills: plan, implement, review, QA, ship, investigate, design, and more.",
+  "author": {
+    "name": "lww",
+    "url": "https://github.com/flalongflalong/master"
+  },
+  "license": "MIT",
+  "keywords": [
+    "gstack",
+    "planning",
+    "review",
+    "qa",
+    "engineering-workflow"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Simple Gstack for Claude Code",
+    "shortDescription": "Engineering workflow skills: plan, build, review, QA, ship.",
+    "longDescription": "A port of the simple-gstack-en plugin for Claude Code. File-first engineering workflow with planning, implementation, review, QA, security audit, design, and release skills — adapted from Codex to Claude Code conventions.",
+    "developerName": "lww",
+    "category": "Productivity",
+    "capabilities": ["Read", "Write", "Review", "Test", "Plan"],
+    "defaultPrompt": [
+      "Use /sg-plan to create or refresh the active context eng-plan.md for this task.",
+      "Use /sg-tasks to turn an approved eng-plan.md into tasks.md and sprint.md.",
+      "Use /sg-implement to execute from plan with minimal diffs and tests.",
+      "Use /sg-review to review the current diff for production risks.",
+      "Use /sg-qa to reproduce, fix, and regression-test bugs."
+    ],
+    "brandColor": "#D77757"
+  }
+}

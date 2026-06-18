@@ -1,0 +1,4 @@
+interface:
+  display_name: "DB And API"
+  short_description: "Change database and API contracts."
+  default_prompt: "Use $skill-db-api for this database or API change."

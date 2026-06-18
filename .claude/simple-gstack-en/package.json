@@ -1,0 +1,6 @@
+{
+  "name": "simple-gstack-en",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Engineering workflow skills: plan, implement, review, QA, ship, investigate, design, and more — adapted from gstack for Claude Code."
+}

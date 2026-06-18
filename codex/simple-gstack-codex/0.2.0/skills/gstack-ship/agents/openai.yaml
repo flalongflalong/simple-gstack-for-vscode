@@ -1,0 +1,5 @@
+interface:
+  display_name: "Gstack Ship"
+  short_description: "Validate and package a branch for release."
+  default_prompt: "Use $gstack-ship to validate this branch and prepare release notes before PR."
+  brand_color: "#2563EB"
