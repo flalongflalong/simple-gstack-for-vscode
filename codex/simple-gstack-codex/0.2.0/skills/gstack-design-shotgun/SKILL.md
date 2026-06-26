@@ -26,7 +26,7 @@ Ask at most two context questions. If the files answer enough, proceed with stat
 
 1. Summarize the brief in five dimensions: who, job, current state, user flow, and edge states.
 2. Infer taste signals from prior design explorations or `DESIGN.md`. If none exist, offer a compact preference prompt or include a broad spread.
-3. If the user mentions reference sites, DESIGN.md examples, or visual style archetypes, use `$skill-design-ui` to extract 1-3 style grammars before generating options.
+3. If the user mentions reference sites, DESIGN.md examples, or visual style archetypes, use `$priv-skill-design-ui` to extract 1-3 style grammars before generating options.
 4. Generate 3 directions by default:
    - one safe/category-legible direction
    - one opinionated differentiated direction
@@ -49,4 +49,4 @@ Ask at most two context questions. If the files answer enough, proceed with stat
 - Use `references/direction-template.md` when expanding directions.
 - Use `references/exploration-template.md` when saving the decision.
 - Use `references/prototype-variant-notes.md` only if the user explicitly asks for coded prototype variants.
-- Use `$skill-design-ui` when reference-backed style archetypes should inform the direction set.
+- Use `$priv-skill-design-ui` when reference-backed style archetypes should inform the direction set.

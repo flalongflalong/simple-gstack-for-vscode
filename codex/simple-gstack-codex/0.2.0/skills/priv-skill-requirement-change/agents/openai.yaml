@@ -1,0 +1,4 @@
+interface:
+  display_name: "Priv Requirement Change"
+  short_description: "Analyze requirement change impact."
+  default_prompt: "Use $priv-skill-requirement-change to assess this requirement change."

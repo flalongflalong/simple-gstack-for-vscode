@@ -1,0 +1,4 @@
+interface:
+  display_name: "Priv Design UI"
+  short_description: "Choose page style and DESIGN.md direction."
+  default_prompt: "Use $priv-skill-design-ui to choose the page style direction."

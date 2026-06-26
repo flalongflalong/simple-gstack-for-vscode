@@ -1,4 +1,0 @@
-interface:
-  display_name: "Prototype Spike"
-  short_description: "Build throwaway prototypes to learn."
-  default_prompt: "Use $skill-prototype-spike to prototype this idea."

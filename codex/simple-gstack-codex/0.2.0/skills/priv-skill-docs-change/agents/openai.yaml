@@ -1,0 +1,4 @@
+interface:
+  display_name: "Priv Docs Change"
+  short_description: "Handle docs and requirement changes."
+  default_prompt: "Use $priv-skill-docs-change to update docs or requirements."

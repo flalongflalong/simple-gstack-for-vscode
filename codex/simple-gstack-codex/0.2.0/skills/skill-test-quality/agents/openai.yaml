@@ -1,4 +1,0 @@
-interface:
-  display_name: "Test Quality"
-  short_description: "Add tests and quality checks."
-  default_prompt: "Use $skill-test-quality to improve test coverage."

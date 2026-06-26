@@ -1,0 +1,4 @@
+interface:
+  display_name: "Priv Database Change"
+  short_description: "Design safe schema and SQL changes."
+  default_prompt: "Use $priv-skill-database-change for this schema or SQL change."

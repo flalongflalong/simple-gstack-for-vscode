@@ -1,0 +1,4 @@
+interface:
+  display_name: "Priv Engineering Planning"
+  short_description: "Plan a change without heavy ceremony."
+  default_prompt: "Use $priv-skill-eng-planning to make a lightweight engineering plan."

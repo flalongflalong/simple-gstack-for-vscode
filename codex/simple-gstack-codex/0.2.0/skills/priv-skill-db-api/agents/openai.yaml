@@ -1,0 +1,4 @@
+interface:
+  display_name: "Priv DB And API"
+  short_description: "Change database and API contracts."
+  default_prompt: "Use $priv-skill-db-api for this database or API change."

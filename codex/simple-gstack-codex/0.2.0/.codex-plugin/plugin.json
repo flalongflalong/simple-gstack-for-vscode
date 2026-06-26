@@ -1,6 +1,6 @@
 {
   "name": "simple-gstack-codex",
-  "version": "0.2.0",
+  "version": "0.2.0+codex.20260618094509",
   "description": "Codex engineering operating system skills for file-first planning, implementation, review, QA, release, and context management.",
   "author": {
     "name": "lww",

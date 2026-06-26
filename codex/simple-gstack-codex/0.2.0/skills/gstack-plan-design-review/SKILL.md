@@ -33,7 +33,7 @@ If there is no UI scope, say so clearly and stop. Do not force a design review o
 
 1. Report the UI scope, existing design leverage, and whether `DESIGN.md` exists.
 2. Score current design completeness from 0-10. State what 10/10 would require for this exact plan.
-3. If the plan lacks a concrete visual direction, use `$skill-design-ui` to add a compact style brief before reviewing implementation details.
+3. If the plan lacks a concrete visual direction, use `$priv-skill-design-ui` to add a compact style brief before reviewing implementation details.
 4. Read `references/plan-review-passes.md` and run only the passes relevant to the UI surface.
 5. When a missing decision is clear, write it into the active `design-plan.md` or the UI section of `eng-plan.md`.
 6. When a real product/design fork remains, ask one focused question with a recommendation and tradeoff. Otherwise choose the conservative path that aligns with `DESIGN.md` and existing UI patterns.
@@ -52,4 +52,4 @@ If there is no UI scope, say so clearly and stop. Do not force a design review o
 
 - Read `references/plan-review-passes.md` before the main review.
 - Use `references/design-plan-template.md` when creating or refreshing a `design-plan.md`.
-- Use `$skill-design-ui` when the plan needs a concrete page-style brief before implementation can be reviewed.
+- Use `$priv-skill-design-ui` when the plan needs a concrete page-style brief before implementation can be reviewed.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Priv Release DevOps"
+  short_description: "Handle Docker, CI, and release readiness."
+  default_prompt: "Use $priv-skill-release-devops for this Docker, CI, or release task."

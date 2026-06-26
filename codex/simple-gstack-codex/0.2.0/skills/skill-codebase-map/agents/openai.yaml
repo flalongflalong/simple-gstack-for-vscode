@@ -1,4 +1,0 @@
-interface:
-  display_name: "Codebase Map"
-  short_description: "Map unfamiliar code before changing it."
-  default_prompt: "Use $skill-codebase-map to explain this code area."

@@ -26,7 +26,7 @@ If the repository has no clear product context, recommend `gstack-office-hours` 
 
 1. If `DESIGN.md` exists, read it and ask whether to update, start fresh, or cancel. If the answer is clear from the user's request, proceed with that interpretation and state it.
 2. Confirm product context in one compact question only when local files cannot answer it: product, audience, category, UI type, and whether current category research is desired.
-3. If the user asks for page style inspiration, "make it feel like X", or DESIGN.md examples, use `$skill-design-ui` first to select reference archetypes and extract style grammar. Treat those references as inspiration, not brand skins.
+3. If the user asks for page style inspiration, "make it feel like X", or DESIGN.md examples, use `$priv-skill-design-ui` first to select reference archetypes and extract style grammar. Treat those references as inspiration, not brand skins.
 4. If current market/category research is requested or materially needed, browse current sources and cite them. If not, use local context and design judgment.
 5. Build one coherent proposal with:
    - aesthetic direction
@@ -54,4 +54,4 @@ If the repository has no clear product context, recommend `gstack-office-hours` 
 
 - Use `references/design-system-template.md` for `DESIGN.md`.
 - Use `references/proposal-checklist.md` before writing the final proposal.
-- Use `$skill-design-ui` when a reference-backed page style direction is needed before committing to a durable design system.
+- Use `$priv-skill-design-ui` when a reference-backed page style direction is needed before committing to a durable design system.

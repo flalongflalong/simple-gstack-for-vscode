@@ -1,0 +1,4 @@
+interface:
+  display_name: "Priv Test Quality"
+  short_description: "Add tests and quality checks."
+  default_prompt: "Use $priv-skill-test-quality to improve test coverage."

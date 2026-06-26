@@ -1,0 +1,4 @@
+interface:
+  display_name: "Priv Codebase Map"
+  short_description: "Map unfamiliar code before changing it."
+  default_prompt: "Use $priv-skill-codebase-map to explain this code area."

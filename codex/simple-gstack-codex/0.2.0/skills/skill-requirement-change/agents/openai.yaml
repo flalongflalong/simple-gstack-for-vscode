@@ -1,4 +1,0 @@
-interface:
-  display_name: "Requirement Change"
-  short_description: "Analyze requirement change impact."
-  default_prompt: "Use $skill-requirement-change to assess this requirement change."

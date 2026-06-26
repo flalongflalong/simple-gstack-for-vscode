@@ -1,4 +1,0 @@
-interface:
-  display_name: "Database Change"
-  short_description: "Design safe schema and SQL changes."
-  default_prompt: "Use $skill-database-change for this schema or SQL change."

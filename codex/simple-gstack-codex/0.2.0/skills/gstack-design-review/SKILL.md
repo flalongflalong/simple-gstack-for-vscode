@@ -27,7 +27,7 @@ If the app can run locally and the user wants visual evidence, prefer real brows
 1. Classify the surface as `MARKETING`, `APP`, or `HYBRID`; state why.
 2. Capture first impression: what the page communicates in 3 seconds, where the eye lands first, and whether that matches the intended hierarchy.
 3. Extract the actual rendered design system from code or browser evidence: fonts, color palette, spacing scale, surface model, radius, shadows, motion, states.
-4. If the UI appears reference-inspired but has no clear local `DESIGN.md`, use `$skill-design-ui` to infer the intended style grammar before judging consistency.
+4. If the UI appears reference-inspired but has no clear local `DESIGN.md`, use `$priv-skill-design-ui` to infer the intended style grammar before judging consistency.
 5. Read `references/audit-checklist.md` and run the checklist against the surface type.
 6. Assign severity:
    - `HIGH`: broken hierarchy, inaccessible contrast/focus, mobile breakage, misleading UX, obvious AI-template pattern.
@@ -55,4 +55,4 @@ If the app can run locally and the user wants visual evidence, prefer real brows
 - Read `references/audit-checklist.md` for the review lens.
 - Use `references/browser-verification.md` when running the app in a real browser.
 - Use `references/output-template.md` for final report shape.
-- Use `$skill-design-ui` when the intended style grammar must be inferred from references before auditing consistency.
+- Use `$priv-skill-design-ui` when the intended style grammar must be inferred from references before auditing consistency.
